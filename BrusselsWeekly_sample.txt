@@ -1,0 +1,61 @@
+## **Brussels Weekly: Space Shields, Safety Milestones, and the "Simplification Revolution"**
+
+It has been a high-stakes week in the heart of the European quarter. From the launch of a futuristic "Space Shield" to aggressive antitrust crackdowns on fast-fashion giants, the EU institutions are sprinting through February with a clear focus on **security, sovereignty, and slashing red tape.**
+
+Here is your breakdown of the key news from the European Commission and the European Council for the week of February 16–20, 2026.
+
+---
+
+### **1. Top Legislative Procedures & Initiatives**
+
+**The "European Space Shield" Action Plan**
+The headline-grabber this week was the Commission’s disclosure of the **European Space Shield** action plan. Part of the broader 2026 Work Programme, this initiative aims to protect critical space assets (like Galileo and Copernicus) from increasingly hostile threats. It seeks to integrate national and commercial space assets into a unified defense framework by 2030.
+
+**The "Simplification Revolution"**
+Following the informal leaders’ retreat in Alden Biesen, the European Council has doubled down on competitiveness. The Commission is now moving forward with a series of **"Omnibus" simplification proposals** designed to reduce administrative burdens by **25% overall** (and 35% for SMEs). This week, specifically, a call for evidence was launched to simplify energy-efficiency labeling for products like tires and home appliances.
+
+**e-Evidence Directive Deadline**
+February 18 marked the official transposition deadline for the **e-Evidence Directive**. While only four Member States (Croatia, Italy, Lithuania, and Slovakia) have fully adopted the legislation so far, the framework is now technically "live," allowing law enforcement to cross borders digitally to secure electronic evidence.
+
+---
+
+### **2. Major Communications & Enforcement**
+
+**DSA Crackdown: Formal Proceedings Against SHEIN**
+The Commission officially opened formal proceedings against the e-commerce giant **Shein** under the Digital Services Act (DSA). The investigation focuses on:
+
+* **Addictive design** features.
+* Lack of transparency in **recommender algorithms**.
+* The sale of **illegal products** and failure to protect minors.
+
+**Road Safety Milestone Report**
+The Commission published its progress report on the EU’s goal to halve road deaths by 2030. While fatalities have dropped 12% since 2019, the report warns that the current pace is **insufficient**. 19,940 lives were lost on EU roads in 2024, prompting Commissioner Apostolos Tzitzikostas to call for stricter enforcement of speed limits and seatbelt laws.
+
+---
+
+### **3. Official Meetings & Council Highlights**
+
+**Munich Security Conference (MSC) 2026**
+President Ursula von der Leyen took center stage in Munich this week, urging Member States to "bring the mutual defense clause to life." Her message was blunt: Europe must consolidate its defense spending or risk irrelevance in a shifting transatlantic landscape.
+
+**Coreper I & II (Feb 18 & 20)**
+Behind the scenes, the Committee of Permanent Representatives (Coreper) met to hammer out the details for next week’s **Foreign Affairs Council (Feb 23)** and **General Affairs Council (Feb 24)**. High on the agenda:
+
+* A new package of **restrictive measures against Russia** and Belarus.
+* The seat selection procedure for the new **EU Customs Agency (EUCA)**.
+* Preparation for the high-level European Council summit on March 19–20.
+
+---
+
+### **4. Tech & Competition Round-up**
+
+* **Antitrust:** The Commission closed its investigation into **Edwards Lifesciences** after the company withdrew a disputed policy, signaling a win for competition in the medical device sector.
+* **Cybersecurity Act 2.0:** Discussions intensified on the revised Cybersecurity Act, which would empower **ENISA** to issue early warnings on ransomware and manage a unified EU incident repository.
+
+---
+
+### **The Bottom Line**
+
+This week signaled a shift from "planning" to "protecting." Whether it’s shielding satellites, protecting consumers from fast-fashion algorithms, or reinforcing the Single Market, the EU is pivoting toward a more assertive, "sovereign" stance.
+
+**Would you like me to draft a deep-dive analysis on the "European Space Shield" or a summary of the upcoming Foreign Affairs Council agenda?**
