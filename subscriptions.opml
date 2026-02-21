@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.1">
+  <head>
+    <title>The dot dot Reader</title>
+    <dateCreated>Sat, 21 Feb 2026 17:32:42 GMT</dateCreated>
+    <dateModified>Sat, 21 Feb 2026 17:32:42 GMT</dateModified>
+    <ownerName>Try Advocacy</ownerName>
+    <ownerEmail>oo@t**y.org</ownerEmail>
+  </head>
+  <body>
+    <outline type="rss" xmlUrl="https://feeds.bbci.co.uk/news/rss.xml?edition=int"/>
+    <outline type="rss" xmlUrl="https://feeds.bloomberg.com/markets/news.rss"/>
+    <outline type="rss" xmlUrl="https://www.ft.com/rss/home/international"/>
+    <outline type="rss" xmlUrl="https://www.politico.eu/feed/"/>
+    <outline type="rss" xmlUrl="https://www.france24.com/en/rss"/>
+  </body>
+</opml>
+
