@@ -1,0 +1,321 @@
+"""
+Word Cloud Generator
+Generates a word cloud from text frequency data with customizable visualization options.
+Supports both size-based and color-based (warm-cold scale) representations of word frequencies.
+"""
+
+import json
+import argparse
+from pathlib import Path
+from collections import defaultdict
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+from wordcloud import WordCloud
+import numpy as np
+
+
+def load_frequency_data(input_file):
+    """
+    Load word frequency data from a JSON file (output from word-frequency.py).
+    
+    Expected format:
+    {
+        "word1": frequency1,
+        "word2": frequency2,
+        ...
+    }
+    
+    Args:
+        input_file (str): Path to the JSON file containing word frequencies
+        
+    Returns:
+        dict: Dictionary of word frequencies
+    """
+    try:
+        with open(input_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        if not isinstance(data, dict):
+            raise ValueError("Expected JSON file to contain a dictionary of word frequencies")
+        
+        return data
+    except FileNotFoundError:
+        print(f"Error: File '{input_file}' not found.")
+        return {}
+    except json.JSONDecodeError:
+        print(f"Error: Invalid JSON format in '{input_file}'.")
+        return {}
+
+
+def create_size_based_wordcloud(word_frequencies, width=1200, height=600, 
+                                background_color='white', output_file=None):
+    """
+    Create a word cloud where word size represents frequency.
+    
+    Args:
+        word_frequencies (dict): Dictionary of word frequencies
+        width (int): Width of the word cloud image
+        height (int): Height of the word cloud image
+        background_color (str): Background color for the word cloud
+        output_file (str): Optional path to save the image
+    """
+    if not word_frequencies:
+        print("No word frequency data to visualize.")
+        return
+    
+    wordcloud = WordCloud(
+        width=width,
+        height=height,
+        background_color=background_color,
+        colormap='viridis',
+        relative_scaling=0.5,
+        min_font_size=10
+    ).generate_from_frequencies(word_frequencies)
+    
+    plt.figure(figsize=(15, 8))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis('off')
+    plt.title('Word Cloud - Size-Based Frequency Representation', fontsize=16, pad=20)
+    
+    if output_file:
+        plt.savefig(output_file, dpi=300, bbox_inches='tight')
+        print(f"Word cloud saved to {output_file}")
+    
+    plt.show()
+
+
+def create_warmcold_wordcloud(word_frequencies, width=1200, height=600,
+                              background_color='white', output_file=None):
+    """
+    Create a word cloud where word color represents frequency (warm-cold scale).
+    Higher frequencies = warmer colors (red), Lower frequencies = cooler colors (blue).
+    All words displayed at similar size for better color visibility.
+    
+    Args:
+        word_frequencies (dict): Dictionary of word frequencies
+        width (int): Width of the word cloud image
+        height (int): Height of the word cloud image
+        background_color (str): Background color for the word cloud
+        output_file (str): Optional path to save the image
+    """
+    if not word_frequencies:
+        print("No word frequency data to visualize.")
+        return
+    
+    # Normalize frequencies for color mapping
+    freqs = np.array(list(word_frequencies.values()))
+    norm = mcolors.Normalize(vmin=freqs.min(), vmax=freqs.max())
+    
+    # Create color function using warm-cold colormap (cool -> warm: blue -> red)
+    cmap = plt.cm.coolwarm
+    
+    def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+        """Color words based on their frequency using warm-cold scale."""
+        freq = word_frequencies.get(word, 0)
+        color_value = norm(freq)
+        rgb = cmap(color_value)
+        return mcolors.rgb2hex(rgb)
+    
+    wordcloud = WordCloud(
+        width=width,
+        height=height,
+        background_color=background_color,
+        relative_scaling=0.5,
+        min_font_size=10
+    ).generate_from_frequencies(word_frequencies)
+    
+    # Apply custom color function
+    wordcloud.recolor(color_func=color_func)
+    
+    plt.figure(figsize=(15, 8))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis('off')
+    plt.title('Word Cloud - Warm-Cold Color Scale Frequency Representation', 
+              fontsize=16, pad=20)
+    
+    # Add colorbar for reference
+    sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+    sm.set_array([])
+    cbar = plt.colorbar(sm, ax=plt.gca(), fraction=0.046, pad=0.04)
+    cbar.set_label('Word Frequency', rotation=270, labelpad=20)
+    
+    if output_file:
+        plt.savefig(output_file, dpi=300, bbox_inches='tight')
+        print(f"Word cloud saved to {output_file}")
+    
+    plt.show()
+
+
+def create_combined_wordcloud(word_frequencies, width=1400, height=700,
+                              background_color='white', output_file=None):
+    """
+    Create a side-by-side comparison of size-based and color-based word clouds.
+    
+    Args:
+        word_frequencies (dict): Dictionary of word frequencies
+        width (int): Total width for both visualizations
+        height (int): Height of the visualizations
+        background_color (str): Background color for the word clouds
+        output_file (str): Optional path to save the image
+    """
+    if not word_frequencies:
+        print("No word frequency data to visualize.")
+        return
+    
+    # Normalize frequencies for color mapping
+    freqs = np.array(list(word_frequencies.values()))
+    norm = mcolors.Normalize(vmin=freqs.min(), vmax=freqs.max())
+    cmap = plt.cm.coolwarm
+    
+    def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+        """Color words based on their frequency using warm-cold scale."""
+        freq = word_frequencies.get(word, 0)
+        color_value = norm(freq)
+        rgb = cmap(color_value)
+        return mcolors.rgb2hex(rgb)
+    
+    # Size-based word cloud
+    wc_size = WordCloud(
+        width=width//2,
+        height=height,
+        background_color=background_color,
+        colormap='viridis',
+        relative_scaling=0.5,
+        min_font_size=10
+    ).generate_from_frequencies(word_frequencies)
+    
+    # Color-based word cloud
+    wc_color = WordCloud(
+        width=width//2,
+        height=height,
+        background_color=background_color,
+        relative_scaling=0.5,
+        min_font_size=10
+    ).generate_from_frequencies(word_frequencies)
+    wc_color.recolor(color_func=color_func)
+    
+    fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+    
+    axes[0].imshow(wc_size, interpolation='bilinear')
+    axes[0].set_title('Size-Based Representation', fontsize=14, pad=15)
+    axes[0].axis('off')
+    
+    axes[1].imshow(wc_color, interpolation='bilinear')
+    axes[1].set_title('Warm-Cold Color Scale Representation', fontsize=14, pad=15)
+    axes[1].axis('off')
+    
+    # Add colorbar to the right
+    sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+    sm.set_array([])
+    cbar_ax = fig.add_axes([0.92, 0.15, 0.02, 0.7])
+    cbar = fig.colorbar(sm, cax=cbar_ax)
+    cbar.set_label('Word Frequency', rotation=270, labelpad=20)
+    
+    plt.tight_layout(rect=[0, 0, 0.91, 1])
+    
+    if output_file:
+        plt.savefig(output_file, dpi=300, bbox_inches='tight')
+        print(f"Combined word cloud saved to {output_file}")
+    
+    plt.show()
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Generate word clouds from frequency data with multiple visualization options.',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Size-based word cloud (default)
+  python word_cloud_generator.py word_frequencies.json
+  
+  # Color-based warm-cold scale
+  python word_cloud_generator.py word_frequencies.json --mode color
+  
+  # Combined side-by-side comparison
+  python word_cloud_generator.py word_frequencies.json --mode combined
+  
+  # Save to file instead of displaying
+  python word_cloud_generator.py word_frequencies.json --output wordcloud.png
+        """
+    )
+    
+    parser.add_argument(
+        'input_file',
+        help='Path to JSON file containing word frequencies'
+    )
+    
+    parser.add_argument(
+        '--mode',
+        choices=['size', 'color', 'combined'],
+        default='size',
+        help='Visualization mode: size-based (default), warm-cold color scale, or combined'
+    )
+    
+    parser.add_argument(
+        '--width',
+        type=int,
+        default=1200,
+        help='Width of the word cloud (default: 1200)'
+    )
+    
+    parser.add_argument(
+        '--height',
+        type=int,
+        default=600,
+        help='Height of the word cloud (default: 600)'
+    )
+    
+    parser.add_argument(
+        '--background',
+        default='white',
+        help='Background color for the word cloud (default: white)'
+    )
+    
+    parser.add_argument(
+        '--output',
+        help='Optional path to save the output image'
+    )
+    
+    args = parser.parse_args()
+    
+    # Load the word frequency data
+    word_frequencies = load_frequency_data(args.input_file)
+    
+    if not word_frequencies:
+        print("Exiting: No data to visualize.")
+        return
+    
+    print(f"Loaded {len(word_frequencies)} unique words from {args.input_file}")
+    print(f"Mode: {args.mode}")
+    print(f"Dimensions: {args.width}x{args.height}")
+    
+    # Generate word cloud based on selected mode
+    if args.mode == 'size':
+        create_size_based_wordcloud(
+            word_frequencies,
+            width=args.width,
+            height=args.height,
+            background_color=args.background,
+            output_file=args.output
+        )
+    elif args.mode == 'color':
+        create_warmcold_wordcloud(
+            word_frequencies,
+            width=args.width,
+            height=args.height,
+            background_color=args.background,
+            output_file=args.output
+        )
+    elif args.mode == 'combined':
+        create_combined_wordcloud(
+            word_frequencies,
+            width=args.width * 2,
+            height=args.height,
+            background_color=args.background,
+            output_file=args.output
+        )
+
+
+if __name__ == '__main__':
+    main()
