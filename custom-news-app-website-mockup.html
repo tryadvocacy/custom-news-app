@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexiNews | Frequency-Based News Aggregation</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
+    
+    <style>
+        body {
+            background-color: #f4f4f4;
+            scroll-behavior: smooth;
+        }
+
+        .hero-section {
+            background-color: #161616;
+            color: #ffffff;
+            padding: 8rem 0 4rem 0;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            height: 100%;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            border: 1px solid #0f62fe;
+        }
+
+        .mockup-container {
+            background: #262626;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 2rem;
+        }
+
+        /* Simulated WordCloud Styles */
+        .wordcloud-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: #ffffff;
+            border: 1px dashed #8d8d8d;
+        }
+
+        .word { 
+            cursor: pointer; 
+            transition: color 0.2s; 
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+        }
+        .word:hover { color: #0f62fe; text-decoration: underline; }
+        .size-lg { font-size: 3rem; color: #161616; }
+        .size-md { font-size: 2rem; color: #393939; }
+        .size-sm { font-size: 1.2rem; color: #6f6f6f; }
+
+        footer {
+            background-color: #161616;
+            color: #f4f4f4;
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bx--header" role="banner" aria-label="LexiNews" data-header>
+        <a class="bx--header__name" href="#">
+            <span class="bx--header__name--prefix">LEXI</span>NEWS
+        </a>
+        <nav class="bx--header__nav" aria-label="Platform Name" data-header-nav>
+            <ul class="bx--header__menu-bar" role="menubar">
+                <li><a class="bx--header__menu-item" href="#features">Features</a></li>
+                <li><a class="bx--header__menu-item" href="#how-it-works">How it Works</a></li>
+            </ul>
+        </nav>
+        <div class="bx--header__global">
+            <button class="bx--btn bx--btn--primary bx--btn--sm" type="button">Download App</button>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="bx--grid">
+            <div class="bx--row">
+                <div class="bx--col-lg-8 bx--col-md-12">
+                    <h1 class="bx--type-display-01">News by the numbers, <br/>not just the headlines.</h1>
+                    <p class="bx--type-expressive-heading-03" style="margin: 1.5rem 0 2.5rem 0; color: #c6c6c6;">
+                        LexiNews aggregates global RSS feeds and visualizes the world's narrative through real-time word frequency analysis.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="bx--btn bx--btn--primary" type="button">Get Started</button>
+                        <button class="bx--btn bx--btn--tertiary" type="button">View Source</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bx--grid" style="margin-top: -4rem;">
+        <div class="bx--row">
+            <div class="bx--col-lg-12">
+                <div class="mockup-container">
+                    <div class="bx--type-label-01" style="color: #f4f4f4; margin-bottom: 1rem;">INTERACTIVE PREVIEW: SELECT A KEYWORD</div>
+                    <div class="wordcloud-preview">
+                        <span class="word size-lg">Geopolitics</span>
+                        <span class="word size-md">Technology</span>
+                        <span class="word size-sm">Sustainability</span>
+                        <span class="word size-lg">AI</span>
+                        <span class="word size-md">Economy</span>
+                        <span class="word size-sm">Market</span>
+                        <span class="word size-md">Innovation</span>
+                        <span class="word size-sm">Climate</span>
+                        <span class="word size-lg">Health</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="bx--grid" style="padding: 5rem 0;">
+        <div class="bx--row" style="margin-bottom: 3rem;">
+            <div class="bx--col-lg-12">
+                <h2 class="bx--type-section-heading-01">Why LexiNews?</h2>
+            </div>
+        </div>
+        <div class="bx--row">
+            <div class="bx--col-lg-4 bx--col-md-4" style="margin-bottom: 1rem;">
+                <div class="feature-card">
+                    <h4 class="bx--type-productive-heading-03">Wordcloud Discovery</h4>
+                    <p class="bx--type-body-short-01" style="margin-top: 1rem;">Skip the clickbait. Our UI starts with a frequency-weighted cloud. The bigger the word, the more it's being discussed across your feeds.</p>
+                </div>
+            </div>
+            <div class="bx--col-lg-4 bx--col-md-4" style="margin-bottom: 1rem;">
+                <div class="feature-card">
+                    <h4 class="bx--type-productive-heading-03">RSS Aggregation</h4>
+                    <p class="bx--type-body-short-01" style="margin-top: 1rem;">Connect your favorite sources. We parse the full text of every article to calculate true linguistic significance.</p>
+                </div>
+            </div>
+            <div class="bx--col-lg-4 bx--col-md-4" style="margin-bottom: 1rem;">
+                <div class="feature-card">
+                    <h4 class="bx--type-productive-heading-03">Deep Dive</h4>
+                    <p class="bx--type-body-short-01" style="margin-top: 1rem;">Click any keyword to see the specific articles contributing to its frequency, along with sentiment analysis and trends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="bx--grid">
+            <div class="bx--row">
+                <div class="bx--col-lg-6">
+                    <h3 class="bx--type-expressive-heading-04">LexiNews</h3>
+                    <p class="bx--type-body-short-01" style="color: #a8a8a8; margin-top: 1rem;">Built with Carbon Design System.</p>
+                </div>
+                <div class="bx--col-lg-6" style="text-align: right;">
+                    <nav>
+                        <ul style="list-style: none;">
+                            <li><a href="#" style="color: #f4f4f4; text-decoration: none;">GitHub</a></li>
+                            <li><a href="#" style="color: #f4f4f4; text-decoration: none;">Documentation</a></li>
+                            <li><a href="#" style="color: #f4f4f4; text-decoration: none;">Privacy Policy</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
+    <script>
+        // Simple interaction for the demo cloud
+        document.querySelectorAll('.word').forEach(word => {
+            word.addEventListener('click', () => {
+                alert('In the app, this would open a list of articles containing: ' + word.innerText);
+            });
+        });
+    </script>
+</body>
+</html>
