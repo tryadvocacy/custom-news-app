@@ -10,6 +10,10 @@
     pkgs.python311
     pkgs.python311Packages.pip
     pkgs.python311Packages.pytest
+    pkgs.python311Packages.matplotlib
+    pkgs.python311Packages.wordcloud
+    pkgs.python311Packages.feedparser
+    pkgs.python311Packages.requests
     # pkgs.nodejs_20
     # pkgs.nodePackages.nodemon
   ];
@@ -45,7 +49,6 @@
       onCreate = {
         # Example: install JS dependencies from NPM
         # npm-install = "npm install";
-        pip-install = "pip install -r requirements.txt";
       };
       # Runs when the workspace is (re)started
       onStart = {
