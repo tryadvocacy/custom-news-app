@@ -1,3 +1,5 @@
-feedparser>=6.0.10
-pytest>=9.0.0
-matplotlib>=3.0.0
+pytest
+matplotlib
+wordcloud
+feedparser
+requests
